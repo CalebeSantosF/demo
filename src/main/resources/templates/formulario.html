@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${animal.id == null ? 'Novo animal' : 'Editar animal'}">Animal</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<div class="container form-container">
+    <div class="topo">
+        <div>
+            <h1 th:text="${animal.id == null ? 'Novo animal' : 'Editar animal'}"></h1>
+            <p>Preencha os dados do animal.</p>
+        </div>
+    </div>
+
+    <form th:action="@{/animais/salvar}" th:object="${animal}" method="post" class="formulario">
+        <input type="hidden" th:field="*{id}">
+
+        <div class="campo">
+            <label for="nome">Nome</label>
+            <input id="nome" type="text" th:field="*{nome}">
+            <span class="erro" th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></span>
+        </div>
+
+        <div class="campo">
+            <label for="especie">Espécie</label>
+            <input id="especie" type="text" th:field="*{especie}">
+            <span class="erro" th:if="${#fields.hasErrors('especie')}" th:errors="*{especie}"></span>
+        </div>
+
+        <div class="campo">
+            <label for="raca">Raça</label>
+            <input id="raca" type="text" th:field="*{raca}">
+            <span class="erro" th:if="${#fields.hasErrors('raca')}" th:errors="*{raca}"></span>
+        </div>
+
+        <div class="linha">
+            <div class="campo">
+                <label for="idade">Idade</label>
+                <input id="idade" type="number" min="0" max="100" th:field="*{idade}">
+                <span class="erro" th:if="${#fields.hasErrors('idade')}" th:errors="*{idade}"></span>
+            </div>
+
+            <div class="campo">
+                <label for="sexo">Sexo</label>
+                <select id="sexo" th:field="*{sexo}">
+                    <option value="">Selecione</option>
+                    <option value="Macho">Macho</option>
+                    <option value="Fêmea">Fêmea</option>
+                </select>
+                <span class="erro" th:if="${#fields.hasErrors('sexo')}" th:errors="*{sexo}"></span>
+            </div>
+        </div>
+
+        <div class="campo">
+            <label for="cor">Cor</label>
+            <input id="cor" type="text" th:field="*{cor}">
+            <span class="erro" th:if="${#fields.hasErrors('cor')}" th:errors="*{cor}"></span>
+        </div>
+
+        <div class="botoes">
+            <a class="botao secundario" th:href="@{/animais}">Cancelar</a>
+            <button class="botao" type="submit">Salvar</button>
+        </div>
+    </form>
+</div>
+</body>
+</html>
