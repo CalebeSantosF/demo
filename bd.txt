@@ -1,0 +1,11 @@
+CREATE DATABASE springbd;
+
+CREATE TABLE animal (
+    id BIGSERIAL PRIMARY KEY,
+    nome VARCHAR(80) NOT NULL,
+    especie VARCHAR(40) NOT NULL,
+    raca VARCHAR(60) NOT NULL,
+    idade INTEGER NOT NULL,
+    sexo VARCHAR(20) NOT NULL,
+    cor VARCHAR(40) NOT NULL
+);
